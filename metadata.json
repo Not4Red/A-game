@@ -1,0 +1,6 @@
+{
+  "name": "DODGE EVERYTHING",
+  "description": "A fast-paced 2D mobile arcade survival game where you pilot a futuristic spaceship to dodge descending asteroids with responsive touch controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

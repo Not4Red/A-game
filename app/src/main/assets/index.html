@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#070b19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Dodge Everything</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    <!-- Ambient Star Dust & Glow Elements (Immersive UI) -->
+    <div class="ambient-fx">
+      <div class="ambient-dot-1"></div>
+      <div class="ambient-dot-2"></div>
+      <div class="ambient-dot-3"></div>
+      <div class="ambient-dot-4"></div>
+      <div class="ambient-nebula-glow"></div>
+    </div>
+
+    <!-- Game Canvas -->
+    <canvas id="game-canvas"></canvas>
+
+    <!-- In-Game HUD -->
+    <header id="hud" class="screen-overlay hud-hidden">
+      <div class="hud-item">
+        <span class="hud-label">SCORE</span>
+        <span id="hud-score" class="hud-value">0</span>
+      </div>
+      <div class="hud-item hud-center">
+        <span class="hud-label">TIME</span>
+        <span id="hud-time" class="hud-value">00:00</span>
+      </div>
+      <div class="hud-item hud-right">
+        <span class="hud-label">BEST</span>
+        <span id="hud-best" class="hud-value">0</span>
+      </div>
+    </header>
+
+    <!-- Main Menu Screen -->
+    <div id="menu-screen" class="screen-overlay active">
+      <div class="menu-content">
+        <div class="logo-container">
+          <div class="logo-sub">SURVIVE THE VOID</div>
+          <h1 class="logo-title">DODGE<br><span class="highlight">EVERYTHING</span></h1>
+          <div class="logo-badge">FAST-PACED ARCADE</div>
+        </div>
+
+        <div class="best-score-badge">
+          <span class="badge-label">ALL-TIME BEST</span>
+          <span id="menu-best-score" class="badge-value">0</span>
+        </div>
+
+        <div class="button-stack">
+          <button id="btn-play" class="btn btn-primary" type="button">
+            <span class="btn-glow"></span>
+            <span class="btn-text">PLAY GAME</span>
+          </button>
+          <button id="btn-settings" class="btn btn-secondary" type="button">
+            <span class="btn-text">SETTINGS</span>
+          </button>
+        </div>
+
+        <div class="control-hint">
+          <span class="hint-icon">✦</span> Touch anywhere on screen to steer your ship
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen-overlay">
+      <div class="menu-content settings-card">
+        <h2 class="section-title">SETTINGS</h2>
+        <div class="title-divider"></div>
+
+        <div class="setting-group">
+          <div class="setting-header">
+            <label for="sensitivity-slider" class="setting-title">SHIP SENSITIVITY</label>
+            <span id="sensitivity-value" class="setting-badge">60%</span>
+          </div>
+          <p class="setting-desc">Lower values glide smoothly. Higher values snap rapidly to touch.</p>
+          <div class="slider-wrapper">
+            <span class="slider-min">10%</span>
+            <input type="range" id="sensitivity-slider" min="10" max="100" value="60" step="1">
+            <span class="slider-max">100%</span>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="setting-row">
+            <div>
+              <div class="setting-title">AUDIO EFFECTS</div>
+              <p class="setting-desc">Thrusters, explosions &amp; alerts</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggle-sound" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-actions">
+          <button id="btn-reset-sensitivity" class="btn btn-secondary btn-small" type="button">
+            RESET TO DEFAULT
+          </button>
+          <button id="btn-settings-back" class="btn btn-primary" type="button">
+            SAVE &amp; BACK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="game-over-screen" class="screen-overlay">
+      <div class="menu-content game-over-card">
+        <div class="alert-icon">⚠</div>
+        <h2 class="game-over-title">VESSEL DESTROYED</h2>
+        <p class="game-over-subtitle">An asteroid crushed your hull</p>
+
+        <div id="new-best-banner" class="new-best-banner hidden">★ NEW HIGH SCORE! ★</div>
+
+        <div class="stats-panel">
+          <div class="stat-box">
+            <span class="stat-label">FINAL SCORE</span>
+            <span id="final-score" class="stat-value">0</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-box">
+            <span class="stat-label">BEST RECORD</span>
+            <span id="final-best-score" class="stat-value">0</span>
+          </div>
+        </div>
+
+        <div class="stats-sub">
+          <span>SURVIVED: <strong id="final-time">0s</strong></span>
+          <span>DODGED: <strong id="final-dodged">0</strong></span>
+        </div>
+
+        <div class="button-stack">
+          <button id="btn-play-again" class="btn btn-primary" type="button">
+            <span class="btn-glow"></span>
+            <span class="btn-text">PLAY AGAIN</span>
+          </button>
+          <button id="btn-game-over-menu" class="btn btn-secondary" type="button">
+            <span class="btn-text">MAIN MENU</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Status Footer (Immersive UI) -->
+    <div class="telemetry-footer">
+      <span class="telemetry-text">Sector-7 Deployment // v1.0.4</span>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
